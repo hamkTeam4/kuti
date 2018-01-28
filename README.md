@@ -2,6 +2,9 @@ Kulunvalvonnan tietokantasovellus
 
 Ovilukijasovellus versio 0.hahhahhaa
 
+ILMOITTAKAA TEKEMÄNNE MUUTOKSET TÄHÄN TIEDOSTOON!!
+
+
 Ottaa sisään käyttäjän syöttämän RFID:n ja PIN:in ja osaa verrata sitä tietokannasta kyselemään RFID:hen ja PIN:iin
 
 Osaa lukea SQL-yhteyden parametrit (url, user, password) ulkoisesta konfiguraatiotiedostosta.
@@ -18,3 +21,4 @@ resources:
 
 
 Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
+
