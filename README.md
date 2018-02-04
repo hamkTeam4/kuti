@@ -23,3 +23,13 @@ resources:
 
 Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
 
+TODO:
+
+    kuti.java:
+        -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5")
+        -Ohjelman silmukointi
+        
+    query.java:
+        -metodi avaustiedon viemiselle tietokantaan
+        -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi
+
