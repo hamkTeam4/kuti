@@ -23,3 +23,6 @@ resources:
 
 Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
 
+KÄYTÄ kehittämiseen v0.5_Experimental - haaraa. 
+
+Ajantasainen TODO-lista löytyy ko. haaran Readme.md:stä
