@@ -28,6 +28,8 @@ TODO:
     kuti.java:
         -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5")
         -Ohjelman silmukointi
+        -Avaustiedon vieminen tietokantaan
+        -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan
         
     query.java:
         -metodi avaustiedon viemiselle tietokantaan

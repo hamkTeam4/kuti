@@ -36,7 +36,7 @@ public class Kuti {
         int rfid;
         int pin;
         
-        
+        System.out.println("KUTI_Ovilukija v. 0.5");
         System.out.println("Enter RFID: ");
         rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
         compRfidPin.queryRfid(rfid); //RFID:n haku tietokannasta.
