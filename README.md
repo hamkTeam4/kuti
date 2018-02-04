@@ -25,13 +25,19 @@ Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
 
 TODO:
 
+    !TIETOKANTAKYSELYJEN SAATTAMINEN TIETOKANNAN TAULUJA SOPIVIKSI!
+
     kuti.java:
         -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5") -> TEHTY
         -Ohjelman silmukointi
         -Avaustiedon vieminen tietokantaan
-        -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan
+        -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan)
         
     query.java:
         -metodi avaustiedon viemiselle tietokantaan
         -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi
+
+    system.java
+        -sisäisiä metodeja ohjelman toimintaan
+        -todo-lista tiedostossa
 
