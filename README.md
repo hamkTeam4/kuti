@@ -26,7 +26,7 @@ Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
 TODO:
 
     kuti.java:
-        -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5")
+        -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5") -> TEHTY
         -Ohjelman silmukointi
         -Avaustiedon vieminen tietokantaan
         -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan
