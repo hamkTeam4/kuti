@@ -181,6 +181,10 @@ public class query extends login{
     }
     
     /*Metodi, joka lähettää tietokantapalvelimeen aikaleiman, oviID:n, RFID:n ja Tapahtumailmoituksen*/
+    
+    public void sendEvent(){
+        //Tähän koodi
+    }
 }
 
 

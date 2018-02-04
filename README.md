@@ -1,6 +1,6 @@
 Kulunvalvonnan tietokantasovellus
 
-Ovilukijasovellus versio 0.hahhahhaa
+Ovilukijasovellus versio 0.5 Experimental
 
 
 
