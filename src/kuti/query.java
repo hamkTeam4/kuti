@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 
 /**
  *
@@ -29,6 +30,7 @@ public class query extends login{
     private String vendorError;
     private int rfid_in;
     private int pin_in;
+  
         
         //Tällä metodilla saa yhteyden tietokantaan. Käytä tätä luomiesi kyselymetodien sisällä.
         //
@@ -181,10 +183,29 @@ public class query extends login{
     }
     
     /*Metodi, joka lähettää tietokantapalvelimeen aikaleiman, oviID:n, RFID:n ja Tapahtumailmoituksen*/
-    
-    public void sendEvent(){
+    //Vielä keskeneräinen
+    public void sendEvent(/*Muuttujat ovi_ID:lle, user_ID:lle, nimelle ja virheille*/) throws SQLException, IOException{
         //Tähän koodi
+        loadDriver();
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        java.sql.Timestamp eventTimestamp = new java.sql.Timestamp(now.getTime());
+        String eventUpdate = "INSERT INTO tapahtumat (aika, ovi_ID, user_ID, nimi, virheet) VALUES (?,?,?,?,?)";
+        PreparedStatement insert = conn.prepareStatement(eventUpdate);
+        conn.setAutoCommit(false);
+        insert.setTimestamp(1, eventTimestamp);
+        insert.setString(2, "S2");
+        insert.setInt(3, 9999);
+        insert.setString(4, "Keskipörhölä Einari");
+        insert.setInt(5,0);
+        insert.addBatch();
+        
+        int[] count = insert.executeBatch();
+        conn.commit();
+        
     }
+    
+   
 }
 
 

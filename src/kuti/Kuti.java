@@ -6,6 +6,7 @@
 package kuti;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -13,13 +14,15 @@ import java.util.Scanner;
  * @author Urho Kekkonen
  */
 public class Kuti {
-
+        
     /**
      * @param args
      * @throws java.io.IOException
+     * @throws java.sql.SQLException
      * @Rename SQLTest to kutiDoor (...or something)
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
+        
         try {
             // The newInstance() call is a work around for some
             // broken Java implementations
@@ -35,6 +38,12 @@ public class Kuti {
         Scanner pin_in = new Scanner(System.in);
         int rfid;
         int pin;
+        //query sendTest = new query(); Testiobjekti tapahtuman lähettämiseksi tietokantaan
+        
+        //sendTest.sendEvent(); Testitapahtuman lähetys
+       
+        
+        
         
         System.out.println("KUTI_Ovilukija v0.5");
         System.out.println("Enter RFID: ");
