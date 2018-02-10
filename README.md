@@ -36,6 +36,8 @@ TODO:
     query.java:
         -metodi avaustiedon viemiselle tietokantaan
         -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi
+        -metodi, joka sulkee tietokantayhteyden
+        -metodi, joka hakee tietokannalta ovitiedon
 
     system.java
         -sisäisiä metodeja ohjelman toimintaan

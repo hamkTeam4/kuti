@@ -63,7 +63,7 @@ public class query extends login{
             //Seuraavat kolme riviä lähettävät tietokannalle kyselyn rfid:stä
             //Hakee rfid-saraketta kuti_users nimisestä taulusta sellaiseslta riviltä jonka rfid arvo on toisen rivin rfid_in -muuttujassa
             //ja tallentaa sen resultRfid -muuttujaan. (Muuta tarvittavilta osin.)
-            PreparedStatement queryRfid = conn.prepareStatement("SELECT ID FROM users WHERE ID=?"); 
+            PreparedStatement queryRfid = conn.prepareStatement("SELECT user_ID FROM users WHERE user_ID=?"); 
             queryRfid.setInt(1, rfid_in); // 1. parametri ja sen arvo
             ResultSet resultRfid = queryRfid.executeQuery();
            
@@ -120,7 +120,7 @@ public class query extends login{
              //Seuraavat kolme riviä lähettävät tietokannalle kyselyn pin:stä
             //Hakee pin-saraketta kuti_users nimisestä taulusta sellaiseslta riviltä jonka rfid arvo täsmää luokan rfid-muuttujan arvon kanssa.
             //Tallentaa tietokannan pin-arvon paikalliseen resultPin-muuttujaan.
-            PreparedStatement queryPin = conn.prepareStatement("SELECT PIN FROM users WHERE ID=?");  
+            PreparedStatement queryPin = conn.prepareStatement("SELECT pin FROM users WHERE user_ID=?");  
             queryPin.setInt(1, rfid); // 1. parametri ja sen arvo
             ResultSet resultPin = queryPin.executeQuery();
             
@@ -200,12 +200,13 @@ public class query extends login{
         insert.setInt(5,0);
         insert.addBatch();
         
-        int[] count = insert.executeBatch();
+        //int[] count = insert.executeBatch(); Mitä tämä tekee?
         conn.commit();
         
     }
     
-   
+    //Metodi, joka hakee ovi-taululta oven tiedot ja tallentaa ne muuttujiin
+    //tämä metodi toteutetaan joka kerta kun RFID-luku syötetään
 }
 
-
+    //Metodi, joka sulkee tietokantayhteyden
