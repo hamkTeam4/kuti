@@ -34,7 +34,7 @@ TODO:
         -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan)
         
     query.java:
-        -metodi avaustiedon viemiselle tietokantaan
+        -metodi avaustiedon viemiselle tietokantaan -> TEHTY 
         -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi
         -metodi, joka sulkee tietokantayhteyden
         -metodi, joka hakee tietokannalta ovitiedon
