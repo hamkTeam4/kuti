@@ -53,13 +53,14 @@ INSERT INTO `lukijat` (`ovi_ID`, `pin_query`) VALUES
 --
 
 CREATE TABLE `tapahtumat` (
-  `event` int(6) NOT NULL,
+  `event` int(6) NOT NULL AUTO_INCREMENT,
   `aika` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000' ON UPDATE CURRENT_TIMESTAMP(6),
   `ovi_ID` varchar(2) NOT NULL,
   `user_ID` int(4) NOT NULL,
   `name` varchar(30) NOT NULL,
   `error` int(2) NOT NULL,
-  `errortext` varchar(30) NOT NULL
+  `errortext` varchar(30) NOT NULL,
+  PRIMARY KEY (event)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
