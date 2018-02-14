@@ -57,7 +57,7 @@ public class Kuti {
         if (compRfidPin.getRfid() == 0) {   //Jos RFID:tä ei löydy tietokannasta compRfidPin.getRfid() palauttaa arvon 0.
             System.out.println("Invalid RFID");
             Event.setName("Invalid user");
-            Event.setError(4);
+            Event.setError(1);
         } else {
             username.queryName(rfid);
             Event.setName(username.getName());
@@ -66,7 +66,7 @@ public class Kuti {
             compRfidPin.queryPin(pin);      //Jos käyttäjän syöttämä PIN ei täsmää tietokannan arvon kanssa compRfidPin.getPin() palauttaa arvon 0.
             if (compRfidPin.getPin() != pin || compRfidPin.getPin() == 0) {
                 System.out.println("Invalid PIN");
-                Event.setError(4); // Antaa tiedon event-olion error muuttujalle jos pin syötetään väärin
+                Event.setError(2); // Antaa tiedon event-olion error muuttujalle jos pin syötetään väärin
             } else {
                 System.out.println("Opening...");
                 Event.setError(0); // Antaa tiedon event-olion muuttujalle (ei virhettä, avaa ovi)
@@ -75,7 +75,7 @@ public class Kuti {
             // Tulostaa SQL-serverin antamat virheilmoitukset System.out.println(compRfidPin.getErrors());
             // Tulostaa PIN arvot pin-muuttujasta ja compRfid-objektista virheenmääritystä varten System.out.println(pin + "  " + compRfidPin.getPin());
         }
-        System.out.println(Event.getOviID() + " " + Event.getUserID() + " " + Event.getName() + " " + Event.getError() + " " + Event.getErrormsg());
-        Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.getErrormsg());
+        System.out.println(Event.getOviID() + " " + Event.getUserID() + " " + Event.getName() + " " + Event.getError() + " " + Event.errorMessage(Event.getError()));
+        //Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.errorMessage(Event.getError()));
     }
 }

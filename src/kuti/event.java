@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  *
@@ -21,6 +22,7 @@ public class event extends query {
     private String name;
     private int error;
     private String errormsg = "open"; //Väliaikainen
+    private HashMap<Integer, String> errorMessage = new HashMap<>();
 
     public String getOviID() {
         return oviID;
@@ -79,5 +81,12 @@ public class event extends query {
         
         int[] count = insert.executeBatch(); 
         getConn().commit();
+    }
+    
+    public String errorMessage(int error){
+        errorMessage.put(0, "Open");
+        errorMessage.put(1, "Invalid RFID");
+        errorMessage.put(2, "Invalid PIN");
+        return errorMessage.get(error);
     }
 }
