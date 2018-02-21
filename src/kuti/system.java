@@ -9,7 +9,9 @@ package kuti;
  *
  * @author hamkTeam4/deeqkko
  */
-public class system {
+public abstract class system {
+    
+    
     //TODO:
     //Muuttujat
     

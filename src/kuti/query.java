@@ -18,7 +18,7 @@ import java.util.Calendar;
  *
  * @author hamkTeam4/deeqkko
  */
-public class query extends login {
+public class query extends system {
 
     private Connection conn = null;
     private Statement stmt = null;
@@ -252,6 +252,15 @@ public class query extends login {
     public void setPinQuery(int pinQuery) {
         this.pinQuery = pinQuery;
     }
+
+    public void setRfid(int rfid) {
+        this.rfid = rfid;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+    
 
   
     

@@ -14,7 +14,7 @@ import java.util.Properties;
  *
  * @author hamkTeam4/deeqkko
  */
-public class login {
+public class login extends query {
 
     String loginData = "";
     InputStream inputStream;
