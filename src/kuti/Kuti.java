@@ -45,10 +45,10 @@ public class Kuti {
         //sendTest.sendEvent(); Testitapahtuman lähetys
         do {
             Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
-            System.out.println("KUTI_Ovilukija v0.5");
+            System.out.println("KUTI_Ovilukija v0.7");
             System.out.println("Enter RFID: ");
-            System.out.println(compRfidPin.getRfid());
-            System.out.println("rfid: " + rfid);
+            
+            
 
             rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
             Event.setUserID(rfid); // Antaa tiedon event-olion user_ID muuttujalle
