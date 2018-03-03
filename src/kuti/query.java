@@ -12,13 +12,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 
 /**
  *
  * @author hamkTeam4/deeqkko
  */
-public class query extends system {
+public class query {
 
     private Connection conn = null;
     private Statement stmt = null;
@@ -203,7 +202,7 @@ public class query extends system {
         try {
             loadDriver();
             PreparedStatement queryDoor = conn.prepareStatement("SELECT pin_query FROM lukijat WHERE ovi_ID = ?");
-            queryDoor.setString(1, "S2");
+            queryDoor.setString(1, "S2"); //Tähän oven tunnus
             ResultSet doorInfo = queryDoor.executeQuery();
             pinQuery = doorInfo.getInt(2);
         } catch (SQLException ex) {

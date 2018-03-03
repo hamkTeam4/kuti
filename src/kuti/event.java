@@ -21,8 +21,8 @@ public class event extends query {
     private int userID;
     private String name;
     private int error;
-    private String errormsg = "open"; //Väliaikainen
-    private HashMap<Integer, String> errorMessage = new HashMap<>();
+    private String errormsg;
+    private final HashMap<Integer, String> errorMessage = new HashMap<>();
 
     public String getOviID() {
         return oviID;
@@ -61,14 +61,14 @@ public class event extends query {
     }
     
       /*Metodi, joka lähettää tietokantapalvelimeen aikaleiman, oviID:n, RFID:n ja Tapahtumailmoituksen*/
-    //Vielä keskeneräinen
+   
     public void sendEvent(String oviID, int userID, String name, int error, String errormsg) throws SQLException, IOException{ /*Muuttujat ovi_ID:lle, user_ID:lle, nimelle ja virheille*/
         //Tähän koodi
         loadDriver();
         Calendar calendar = Calendar.getInstance();
         java.util.Date now = calendar.getTime();
         java.sql.Timestamp eventTimestamp = new java.sql.Timestamp(now.getTime());
-        String eventUpdate = "INSERT INTO tapahtumat (aika, ovi_ID, user_ID, name, error, errortext) VALUES (?,?,?,?,?,?)";
+        String eventUpdate = "INSERT INTO tapahtumat (aika, ovi_ID, user_ID, name, event, eventtext) VALUES (?,?,?,?,?,?)";
         PreparedStatement insert = getConn().prepareStatement(eventUpdate);
         getConn().setAutoCommit(false);
         insert.setTimestamp(1, eventTimestamp);
