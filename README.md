@@ -1,6 +1,6 @@
 Kulunvalvonnan tietokantasovellus
 
-Ovilukijasovellus versio 0.5 Experimental
+Ovilukijasovellus versio 0.6 Experimental
 
 
 
@@ -22,30 +22,24 @@ resources:
 
 
 Dokumentaatio tiedostoissa keskeneräinen! /28.1.2018 deeqkko
-
-<<<<<<< HEAD
-KÄYTÄ kehittämiseen v0.5_Experimental - haaraa. 
+ 
 
 Ajantasainen TODO-lista löytyy ko. haaran Readme.md:stä
 =======
 TODO:
 
-    !TIETOKANTAKYSELYJEN SAATTAMINEN TIETOKANNAN TAULUJA SOPIVIKSI!
+    !TIETOKANTAKYSELYJEN SAATTAMINEN TIETOKANNAN TAULUJA SOPIVIKSI! -> TEHTY
 
     kuti.java:
         -"Header" tieto ohjelman auetessa (esim. "KUTI_ovilukija v0.5") -> TEHTY
-        -Ohjelman silmukointi
-        -Avaustiedon vieminen tietokantaan
+        -Ohjelman silmukointi -> TEHTY
+        -Avaustiedon vieminen tietokantaan -> TEHTY
         -ovitiedon haku paikallisiin muuttujiin (joka kerta, kun RFID luetaan)
         
     query.java:
         -metodi avaustiedon viemiselle tietokantaan -> TEHTY 
-        -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi
+        -metodi, jolla haetaan oviID:tä vastaan vyöhyketieto ja pin-koodikyselytieto paikallisiksi muuttujiksi -> TEHTY
         -metodi, joka sulkee tietokantayhteyden
-        -metodi, joka hakee tietokannalta ovitiedon
+        -metodi, joka hakee tietokannalta ovitiedon -> TEHTY
 
-    system.java
-        -sisäisiä metodeja ohjelman toimintaan
-        -todo-lista tiedostossa
 
->>>>>>> v0.5_Experimental
