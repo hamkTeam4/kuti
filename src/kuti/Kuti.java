@@ -33,11 +33,11 @@ public class Kuti {
         }
 
         event Event = new event();
-        query compRfidPin = new query();
-        query username = new query();
+        serverquery compRfidPin = new tcpconnection();
+        serverquery username = new query();
         Scanner rfid_in = new Scanner(System.in);
         Scanner pin_in = new Scanner(System.in);
-        int rfid = 0;
+        int rfid;
         int pin;
         String doorID = "S2";
         //query sendTest = new query(); Testiobjekti tapahtuman lähettämiseksi tietokantaan
@@ -45,7 +45,7 @@ public class Kuti {
         //sendTest.sendEvent(); Testitapahtuman lähetys
         do {
             Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
-            System.out.println("KUTI_Ovilukija v0.7");
+            System.out.println("KUTI_Ovilukija v0.6");
             System.out.println("Enter RFID: ");
             
             
@@ -53,6 +53,7 @@ public class Kuti {
             rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
             Event.setUserID(rfid); // Antaa tiedon event-olion user_ID muuttujalle
             compRfidPin.queryRfid(rfid); //RFID:n haku tietokannasta.
+            //System.out.println(compRfidPin.getRfid());
 
             if (compRfidPin.getRfid() == 0) {   //Jos RFID:tä ei löydy tietokannasta compRfidPin.getRfid() palauttaa arvon 0.
                 if (rfid == 0) {

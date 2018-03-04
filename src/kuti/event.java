@@ -40,6 +40,7 @@ public class event extends query {
         this.userID = userID;
     }
 
+    @Override
     public String getName() {
         return name;
     }

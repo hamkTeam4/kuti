@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author hamkTeam4/deeqkko
  */
-public class query {
+public class query extends serverquery{
 
     private Connection conn = null;
     private Statement stmt = null;
@@ -43,6 +43,7 @@ public class query {
 
     //Tällä metodilla saa yhteyden tietokantaan. Käytä tätä luomiesi kyselymetodien sisällä.
     //
+    @Override
     public void loadDriver() throws IOException {
         login logData = new login();
         logData.getLoginValues();
@@ -66,6 +67,7 @@ public class query {
      * @throws java.io.IOException Metodi kysyy tietokannalta rfid:tä ja vertaa
      * sitä käyttäjän syöttämään rfid:hen (rfid_in)
      */
+    @Override
     public void queryRfid(int rfid_in) throws IOException {
         loadDriver();
         try {
@@ -119,6 +121,7 @@ public class query {
 
     }
 
+    @Override
     public void queryPin(int pin_in) throws IOException {
         loadDriver();
         try {
@@ -171,6 +174,7 @@ public class query {
 
     }
 
+    @Override
     public void queryName(int rfid) throws IOException, SQLException {
         try {
             loadDriver();
@@ -191,6 +195,7 @@ public class query {
     }
     
    
+    @Override
     public String getName() {
         return name;
     }
@@ -198,6 +203,7 @@ public class query {
     //Metodi joka hakee tietokannasta oven tiedot ja tallettaa ne paikallisiin muuttujiin
     //Metodi, joka hakee ovi-taululta oven tiedot ja tallentaa ne muuttujiin
     //tämä metodi toteutetaan joka kerta kun RFID-luku syötetään
+    @Override
     public void queryDoorInfo() throws IOException, SQLException {
         try {
             loadDriver();
@@ -236,26 +242,32 @@ public class query {
 
     }
 
+    @Override
     public int getRfid() {
         return rfid;
     }
 
+    @Override
     public int getPin() {
         return pin;
     }
 
+    @Override
     public String getErrors() {
         return "M " + sqlMesg + "| S " + sqlState + "| V " + vendorError;
     }
 
+    @Override
     public void setPinQuery(int pinQuery) {
         this.pinQuery = pinQuery;
     }
 
+    @Override
     public void setRfid(int rfid) {
         this.rfid = rfid;
     }
 
+    @Override
     public void setPin(int pin) {
         this.pin = pin;
     }
