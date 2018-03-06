@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kuti;
+package kuti_S2;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author Urho Kekkonen
  */
-public class Kuti {
+public class Kuti_S2 {
 
     /**
      * @param args
@@ -32,9 +32,9 @@ public class Kuti {
             // handle the error
         }
 
-        event Event = new event();
+        serverquery Event = new tcpconnection();
         serverquery compRfidPin = new tcpconnection();
-        serverquery username = new query();
+        serverquery username = new tcpconnection();
         Scanner rfid_in = new Scanner(System.in);
         Scanner pin_in = new Scanner(System.in);
         int rfid;
@@ -45,7 +45,7 @@ public class Kuti {
         //sendTest.sendEvent(); Testitapahtuman lähetys
         do {
             Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
-            System.out.println("KUTI_Ovilukija v0.6");
+            System.out.println("KUTI_Ovilukija v0.6\nOvi " + doorID);
             System.out.println("Enter RFID: ");
             
             
@@ -65,11 +65,11 @@ public class Kuti {
                     Event.setError(1);
                 }
             } else {
-                username.queryName(rfid);
-                Event.setName(username.getName());
+                //username.queryName(rfid);
+                Event.setName(compRfidPin.getName());
                 System.out.println("Enter PIN:");
                 pin = pin_in.nextInt();
-                compRfidPin.queryPin(pin);      //Jos käyttäjän syöttämä PIN ei täsmää tietokannan arvon kanssa compRfidPin.getPin() palauttaa arvon 0.
+                //compRfidPin.queryPin(pin);      //Jos käyttäjän syöttämä PIN ei täsmää tietokannan arvon kanssa compRfidPin.getPin() palauttaa arvon 0.
                 if (compRfidPin.getPin() != pin || compRfidPin.getPin() == 0) {
                     System.out.println("Invalid PIN");
                     Event.setError(2); // Antaa tiedon event-olion error muuttujalle jos pin syötetään väärin
@@ -83,6 +83,7 @@ public class Kuti {
             }
             //System.out.println(Event.getOviID() + " " + Event.getUserID() + " " + Event.getName() + " " + Event.getError() + " " + Event.errorMessage(Event.getError()));
             Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.errorMessage(Event.getError()));
+            System.out.println(Event.getQuery());
             compRfidPin.setRfid(0);
             compRfidPin.setPin(0);
         } while (true);

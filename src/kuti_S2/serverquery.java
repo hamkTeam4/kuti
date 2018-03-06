@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kuti;
+package kuti_S2;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,8 +38,30 @@ public abstract class serverquery {
     public abstract void queryName(int rfid)throws IOException, SQLException;
      
     public abstract void queryDoorInfo()throws IOException, SQLException;
+    
+    //Metodit tietokantaan kirjoittamiselle
+    
+    public abstract String getOviID();
+    
+    public abstract void setOviID(String oviID);
 
+    public abstract int getUserID();
     
+    public abstract void setUserID(int userID);
     
+    public abstract void setName(String name);
     
+    public abstract int getError();
+    
+    public abstract void setError(int error);
+    
+    public abstract String getErrormsg();
+    
+    public abstract void sendEvent(String oviID, int userID, String name, int error, String errormsg) throws SQLException, IOException; /*Muuttujat ovi_ID:lle, user_ID:lle, nimelle ja virheille*/
+
+    public abstract String errorMessage(int error);
+    
+    public abstract String getQuery();
+    
+    public abstract void setQuery(String query);
 }
