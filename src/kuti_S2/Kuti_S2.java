@@ -105,7 +105,7 @@ public class Kuti_S2 {
             }
             //System.out.println(Event.getOviID() + " " + Event.getUserID() + " " + Event.getName() + " " + Event.getError() + " " + Event.errorMessage(Event.getError()));
             Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.errorMessage(Event.getError()));
-            System.out.println(Event.getQuery());
+            //System.out.println(Event.getQuery());
             compRfidPin.setRfid(0);
             compRfidPin.setPin(0);
         } while (true);
