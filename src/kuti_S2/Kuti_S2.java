@@ -7,6 +7,7 @@ package kuti_S2;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -37,8 +38,10 @@ public class Kuti_S2 {
         serverquery username = new tcpconnection();
         Scanner rfid_in = new Scanner(System.in);
         Scanner pin_in = new Scanner(System.in);
-        int rfid;
-        int pin;
+        int rfid = 0;
+        int pin = 0;
+        boolean loopCond;
+
         String doorID = "S2";
         //query sendTest = new query(); Testiobjekti tapahtuman lähettämiseksi tietokantaan
 
@@ -46,11 +49,19 @@ public class Kuti_S2 {
         do {
             Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
             System.out.println("KUTI_Ovilukija v0.6\nOvi " + doorID);
-            System.out.println("Enter RFID: ");
-            
-            
 
-            rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
+            do {
+                loopCond = false;
+                try {
+                    System.out.println("Enter RFID: ");
+                    rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
+                } catch (InputMismatchException inputMismatch) {
+                    System.out.println("ERROR: Corrupted RFID");
+                    rfid_in.nextLine();
+                    loopCond = true;
+                }
+            } while (loopCond == true);
+
             Event.setUserID(rfid); // Antaa tiedon event-olion user_ID muuttujalle
             compRfidPin.queryRfid(rfid); //RFID:n haku tietokannasta.
             //System.out.println(compRfidPin.getRfid());
@@ -67,8 +78,19 @@ public class Kuti_S2 {
             } else {
                 //username.queryName(rfid);
                 Event.setName(compRfidPin.getName());
-                System.out.println("Enter PIN:");
-                pin = pin_in.nextInt();
+                do {
+                    loopCond = false;
+                    try {
+                        System.out.println("Enter PIN:");
+                        pin = pin_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
+                    } catch (InputMismatchException inputMismatch) {
+                        System.out.println("ERROR: Enter a four digit number");
+                        pin_in.nextLine();
+                        loopCond = true;
+                    }
+                } while (loopCond == true);
+                
+                
                 //compRfidPin.queryPin(pin);      //Jos käyttäjän syöttämä PIN ei täsmää tietokannan arvon kanssa compRfidPin.getPin() palauttaa arvon 0.
                 if (compRfidPin.getPin() != pin || compRfidPin.getPin() == 0) {
                     System.out.println("Invalid PIN");
@@ -89,4 +111,5 @@ public class Kuti_S2 {
         } while (true);
 
     }
+
 }
