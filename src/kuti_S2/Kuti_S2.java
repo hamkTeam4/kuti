@@ -22,7 +22,7 @@ public class Kuti_S2 {
      * @throws java.sql.SQLException
      * @Rename SQLTest to kutiDoor (...or something)
      */
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException, InterruptedException {
 
         try {
             // The newInstance() call is a work around for some
@@ -43,73 +43,85 @@ public class Kuti_S2 {
         boolean loopCond;
 
         String doorID = "S2";
-        //query sendTest = new query(); Testiobjekti tapahtuman lähettämiseksi tietokantaan
 
-        //sendTest.sendEvent(); Testitapahtuman lähetys
-        do {
-            Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
-            System.out.println("KUTI_Ovilukija v0.6\nOvi " + doorID);
-
+        mainloop:
+        while (true) {
+            innerMain:
             do {
-                loopCond = false;
-                try {
-                    System.out.println("Enter RFID: ");
-                    rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
-                } catch (InputMismatchException inputMismatch) {
-                    System.out.println("ERROR: Corrupted RFID");
-                    rfid_in.nextLine();
-                    loopCond = true;
-                }
-            } while (loopCond == true);
-
-            Event.setUserID(rfid); // Antaa tiedon event-olion user_ID muuttujalle
-            compRfidPin.queryRfid(rfid); //RFID:n haku tietokannasta.
-            //System.out.println(compRfidPin.getRfid());
-
-            if (compRfidPin.getRfid() == 0) {   //Jos RFID:tä ei löydy tietokannasta compRfidPin.getRfid() palauttaa arvon 0.
-                if (rfid == 0) {
-                    System.out.println("Terminated by user");
+                System.out.println("KUTI_Ovilukija v0.6\nOvi " + doorID);
+                Event.checkConnection();
+                if (Event.isConnectionStatus() == false) {
+                    System.out.println("Connection lost");
+                    Thread.sleep(10000);
                     break;
-                } else {
-                    System.out.println("Invalid RFID");
-                    Event.setName("Invalid user");
-                    Event.setError(1);
                 }
-            } else {
-                //username.queryName(rfid);
-                Event.setName(compRfidPin.getName());
-                do {
+                Event.setOviID(doorID); //Asettaa ovitunnukset Event-oliolle
+
+                do { //Silmukassa tarkastetaan ja tarvittaessa vaaditaan uusi syöte (Jos syöte ei ole pelkkiä numeroita)
                     loopCond = false;
                     try {
-                        System.out.println("Enter PIN:");
-                        pin = pin_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
+                        System.out.println("Enter RFID: ");
+                        rfid = rfid_in.nextInt(); //Kysyy käyttäjältä RFID:n ja muuntaa sen koknaisluvuksi (int)
+                        Event.checkConnection();
+                        if (Event.isConnectionStatus() == false) {
+                            System.out.println("Connection lost");
+                            break innerMain;
+                        }
+
                     } catch (InputMismatchException inputMismatch) {
-                        System.out.println("ERROR: Enter a four digit number");
-                        pin_in.nextLine();
+                        System.out.println("ERROR: Corrupted RFID");
+                        rfid_in.nextLine();
                         loopCond = true;
                     }
                 } while (loopCond == true);
-                
-                
-                //compRfidPin.queryPin(pin);      //Jos käyttäjän syöttämä PIN ei täsmää tietokannan arvon kanssa compRfidPin.getPin() palauttaa arvon 0.
-                if (compRfidPin.getPin() != pin || compRfidPin.getPin() == 0) {
-                    System.out.println("Invalid PIN");
-                    Event.setError(2); // Antaa tiedon event-olion error muuttujalle jos pin syötetään väärin
+
+                Event.setUserID(rfid); // Antaa tiedon event-olion user_ID muuttujalle
+                compRfidPin.queryRfid(rfid); //RFID:n haku tietokannasta.
+                //System.out.println(compRfidPin.getRfid());
+
+                if (compRfidPin.getRfid() == 0) {   //Jos RFID:tä ei löydy tietokannasta compRfidPin.getRfid() palauttaa arvon 0.
+                    if (rfid == 0) {
+                        System.out.println("Terminated by user");
+                        break mainloop;
+                    } else {
+                        System.out.println("Invalid RFID");
+                        Event.setName("Invalid user");
+                        Event.setError(1);
+                    }
                 } else {
-                    System.out.println("Opening...");
-                    Event.setError(0); // Antaa tiedon event-olion muuttujalle (ei virhettä, avaa ovi)
+                    //username.queryName(rfid);
+                    Event.setName(compRfidPin.getName());
+                    do {
+                        loopCond = false;
+                        try {
+                            System.out.println("Enter PIN:");
+                            pin = pin_in.nextInt(); //Kysyy käyttäjältä PIN:n ja muuntaa sen koknaisluvuksi (int)
+                            Event.checkConnection();
+                            if (Event.isConnectionStatus() == false) {
+                                System.out.println("Connection lost");
+                                break innerMain;
+                            }
+                        } catch (InputMismatchException inputMismatch) {
+                            System.out.println("ERROR: Enter a four digit number");
+                            pin_in.nextLine();
+                            loopCond = true;
+                        }
+                    } while (loopCond == true);
+
+                    if (compRfidPin.getPin() != pin || compRfidPin.getPin() == 0) {
+                        System.out.println("Invalid PIN");
+                        Event.setError(2); // Antaa tiedon event-olion error muuttujalle jos pin syötetään väärin
+                    } else {
+                        System.out.println("Opening...");
+                        Event.setError(0); // Antaa tiedon event-olion muuttujalle (ei virhettä, avaa ovi)
+                    }
+
                 }
-
-                // Tulostaa SQL-serverin antamat virheilmoitukset System.out.println(compRfidPin.getErrors());
-                // Tulostaa PIN arvot pin-muuttujasta ja compRfid-objektista virheenmääritystä varten System.out.println(pin + "  " + compRfidPin.getPin());
-            }
-            //System.out.println(Event.getOviID() + " " + Event.getUserID() + " " + Event.getName() + " " + Event.getError() + " " + Event.errorMessage(Event.getError()));
-            Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.errorMessage(Event.getError()));
-            //System.out.println(Event.getQuery());
-            compRfidPin.setRfid(0);
-            compRfidPin.setPin(0);
-        } while (true);
-
+                Event.sendEvent(Event.getOviID(), Event.getUserID(), Event.getName(), Event.getError(), Event.errorMessage(Event.getError()));
+                compRfidPin.setRfid(0);
+                compRfidPin.setPin(0);
+            } while (true);
+        }
     }
 
 }

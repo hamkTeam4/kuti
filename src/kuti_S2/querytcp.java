@@ -30,6 +30,15 @@ public abstract class querytcp extends serverquery {
     String name;
     String[] resultFromServer;
     String eventToServer ="";
+    boolean connectionStatus;
+
+    public boolean isConnectionStatus() {
+        return connectionStatus;
+    }
+
+    public void setConnectionStatus(boolean connectionStatus) {
+        this.connectionStatus = connectionStatus;
+    }
     private final HashMap<Integer, String> errorMessage = new HashMap<>();
     
     
@@ -195,29 +204,6 @@ public abstract class querytcp extends serverquery {
 
     public abstract String sendTCP(String query) throws IOException;
 
-    //Ei käytetä tässä luokassa
-    @Override
-    public String getErrors() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void loadDriver() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    //Tarpeeton
-    @Override
-    public void queryName(int rfid) throws IOException, SQLException {
-        setQuery("kyselyRfidPin," + Integer.toString(rfid));
-        resultFromServer = sendTCP(getQuery()).split(",");
-        name = resultFromServer[2];
-        
-    } //Tarpeeton
-
-    @Override
-    public void queryDoorInfo() throws IOException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

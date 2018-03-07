@@ -14,54 +14,50 @@ import java.sql.SQLException;
  */
 public abstract class serverquery {
     
-    
+    public abstract boolean isConnectionStatus();
+
     public abstract int getRfid();
-    
+
     public abstract void setRfid(int rfid);
-    
+
     public abstract int getPin();
-    
+
     public abstract void setPin(int pin);
-    
+
     public abstract String getName();
-    
-    public abstract String getErrors();
-    
+
     public abstract void setPinQuery(int pinQuery);
-    
-    public abstract void loadDriver() throws IOException;
-    
+
     public abstract void queryRfid(int rfid_in) throws IOException;
-    
+
     public abstract void queryPin(int pin_in) throws IOException;
-    
-    public abstract void queryName(int rfid)throws IOException, SQLException;
-     
-    public abstract void queryDoorInfo()throws IOException, SQLException;
-    
+
     //Metodit tietokantaan kirjoittamiselle
-    
     public abstract String getOviID();
-    
+
     public abstract void setOviID(String oviID);
 
     public abstract int getUserID();
-    
+
     public abstract void setUserID(int userID);
-    
+
     public abstract void setName(String name);
-    
+
     public abstract int getError();
-    
+
     public abstract void setError(int error);
-    
+
     public abstract String getErrormsg();
-    
-    public abstract void sendEvent(String oviID, int userID, String name, int error, String errormsg) throws SQLException, IOException; /*Muuttujat ovi_ID:lle, user_ID:lle, nimelle ja virheille*/
+
+    public abstract void sendEvent(String oviID, int userID, String name, int error, String errormsg) throws SQLException, IOException;
+
+    /*Muuttujat ovi_ID:lle, user_ID:lle, nimelle ja virheille*/
 
     public abstract String errorMessage(int error);
-    
+
     public abstract String getQuery();
-    
+
     public abstract void setQuery(String query);
+
+    public abstract void checkConnection() throws IOException;
 }
