@@ -30,7 +30,7 @@ public abstract class serverquery {
 
     public abstract void queryRfid(int rfid_in) throws IOException;
 
-    public abstract void queryPin(int pin_in) throws IOException;
+   
 
     //Metodit tietokantaan kirjoittamiselle
     public abstract String getOviID();

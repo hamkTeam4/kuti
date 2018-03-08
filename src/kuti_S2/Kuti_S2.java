@@ -48,7 +48,7 @@ public class Kuti_S2 {
         while (true) {
             innerMain:
             do {
-                System.out.println("KUTI_Ovilukija v0.6\nOvi " + doorID);
+                System.out.println("KUTI_Ovilukija v1.0\nOvi " + doorID);
                 Event.checkConnection();
                 if (Event.isConnectionStatus() == false) {
                     System.out.println("Connection lost");

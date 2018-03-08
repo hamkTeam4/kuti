@@ -32,6 +32,7 @@ public abstract class querytcp extends serverquery {
     String eventToServer ="";
     boolean connectionStatus;
 
+    @Override
     public boolean isConnectionStatus() {
         return connectionStatus;
     }
@@ -149,24 +150,8 @@ public abstract class querytcp extends serverquery {
         }
 
     }
-    // Tarpeeton
-    @Override
-    public void queryPin(int pin_in) throws IOException {
-        if (pin_in == 0) {
-            pin = 0;
-        } else {
-            setQuery("kyselyRfidPin," + Integer.toString(getRfid()));
-            resultFromServer = sendTCP(getQuery()).split(",");
-            try {
-                pin = Integer.parseInt(resultFromServer[1]);
-            } catch (NumberFormatException e) {
-                pin = 0;
-            }
-        }
-
-    } // Tarpeeton
     
-    @Override //Tässä on vielä vähän laittamista
+    @Override 
     public void sendEvent(String oviID, int userID, String name, int error, String errormsg) throws SQLException, IOException {
         eventToServer += oviID
                 .concat(",")
@@ -176,8 +161,9 @@ public abstract class querytcp extends serverquery {
                 .concat(",")
                 .concat(Integer.toString(error))
                 .concat(",")
-                .concat(errormsg);
-        
+                .concat(errormsg)
+                .concat(",");
+               
         sendTCP(eventToServer);
         eventToServer="";
         
