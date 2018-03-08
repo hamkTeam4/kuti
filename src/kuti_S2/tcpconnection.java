@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  *
@@ -56,8 +57,11 @@ public class tcpconnection extends querytcp {
             outToServer.writeBytes(getQuery() + '\n');
             setResponse(inFromServer.readLine());
             clientSocket.close();
-            return response;
+            
+        } catch (SocketException s) {
+            response += "Connection dead";
         }
+        return response;
     }
 
     @Override
