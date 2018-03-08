@@ -20,6 +20,7 @@ public class Kuti_S2 {
      * @param args
      * @throws java.io.IOException
      * @throws java.sql.SQLException
+     * @throws java.lang.InterruptedException
      * @Rename SQLTest to kutiDoor (...or something)
      */
     public static void main(String[] args) throws IOException, SQLException, InterruptedException {
