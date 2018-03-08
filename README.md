@@ -18,13 +18,13 @@ Asennusohje:
 
 Tämä ohje olettaa, että käytössä on NetBeans 8.2 ja Java 8.
 1. Valitse File -> Import Project -> From ZIP...
-   -Zip File: kuti_s2.zip
-   -Folder: [Asennuspolku]
-   Import
+   a) Zip File: kuti_s2.zip
+   b) Folder: [Asennuspolku]
+   c) Import
 2. TCP-portin asetus
-  -Avaa Source packages -> kuti_S2 -> tcpconnection.java
-  -Aseta TCP-portti tiedoston riville 51 "localhost", [port].
-  -Tallenna tiedosto (Ctrl + S)
+   a) Avaa Source packages -> kuti_S2 -> tcpconnection.java
+   b) Aseta TCP-portti tiedoston riville 51 "localhost", [port].
+   c) Tallenna tiedosto (Ctrl + S)
 3. Valitse Run -> Clean and Build Project
 4. Ohjelman voi nyt ajaa juurikansion ../kuti_ovilukija/kuti.cmd -tiedostolla.
 
@@ -32,6 +32,6 @@ Tämä ohje olettaa, että käytössä on NetBeans 8.2 ja Java 8.
 Ongelmatilanteet:
 
 Virheilmoitus:  "Connection lost"
-  -Tarkasta, että kuti_server -ohjelma on käynnissä
-  -Tarkasta, että tcpconnection.java:ssa tcp-portti on määritetty oikein (sama, kuin  kuti_serverillä)
-  -Tarkasta tietokoneen palomuurin asetukset (liikenne tcp-porttiin sallittu)
+   a) Tarkasta, että kuti_server -ohjelma on käynnissä
+   b) Tarkasta, että tcpconnection.java:ssa tcp-portti on määritetty oikein (sama, kuin  kuti_serverillä)
+   c) Tarkasta tietokoneen palomuurin asetukset (liikenne tcp-porttiin sallittu)
